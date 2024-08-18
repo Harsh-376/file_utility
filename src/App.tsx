@@ -1,25 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Header from "./components/Header";
+import styles from "./App.styles";
+import { makeStyles } from "@material-ui/core/styles";
+import SideBar from "./components/SideBar";
+import Content from "./components/Content";
+import { Container } from "./components/HOC";
+import Footer from "./components/Footer";
+
+const useStyles = makeStyles(styles, {
+  name: "App",
+  meta: "App",
+});
 
 function App() {
+  const classes = useStyles();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container id="App-root" classes={{ root: classes.root }}>
+      <Header />
+      <Container id="App-content" classes={{ root: classes.contentContainer }}>
+        <SideBar />
+        <Content />
+      </Container>
+      <Footer />
+    </Container>
   );
 }
 
